@@ -1,6 +1,6 @@
 {
   "name": "hbs-templater",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Command line tool for compiling handlebars templates.",
   "main": "index.js",
   "scripts": {
