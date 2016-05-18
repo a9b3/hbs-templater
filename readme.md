@@ -1,4 +1,5 @@
 # hbs-templater
+[![Build Status](https://travis-ci.org/esayemm/hbs-templater.svg?branch=master)](https://travis-ci.org/esayemm/hbs-templater)
 
 Command line tool for compiling handlebars templates.
 
