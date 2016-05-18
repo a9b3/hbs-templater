@@ -14,7 +14,7 @@ hbs-templater compile --paramsFile ./params.json --input ./foo --output ./bar
 hbs-templater compile --paramsJsFile ./params.js --input ./foo --output ./bar
 ```
 
-Module ex.
+(Pending not implemented yet) Module ex.
 
 ```javascript
 import path from 'path'
