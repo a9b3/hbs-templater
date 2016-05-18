@@ -1,32 +1,21 @@
-# CLI kit
-Boilerplate for starting an es6 node cli project.
+# hbs-templater
 
-##Prerequisite
-Have [starter-deck-cli](https://github.com/esayemm/starter-deck-cli) installed
-globally.
+Command line tool for compiling handlebars templates.
 
-##Installation
+ex.
+
 ```sh
-sdcli save cli https://github.com/esayemm/starter-deck_cli-kit
-```
-<hr>
-##Development
-####Publish a release
-Use [npm version](https://docs.npmjs.com/cli/version) and follow [semver](http://semver.org/) rules.<br>
+hbs-templater compile --params "{'foo': 'bar'}" --input ./foo --output ./bar
 
-```
-npm version [ major | minor | patch ]
+# or from a params json file
+hbs-templater compile --paramsFile ./params.json --input ./foo --output ./bar
+
+# or from a params js file, which module.exports an object
+hbs-templater compile --paramsJsFile ./params.js --input ./foo --output ./bar
 ```
 
-1. bumps package version
-2. creates git tag
-3. push tag
-4. builds
-5. npm publish
+## Install
 
-####Test without publishing
-Use [npm link](https://docs.npmjs.com/cli/link).
-
-```
-npm link
+```sh
+npm i -g hbs-templater
 ```
