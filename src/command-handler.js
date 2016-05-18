@@ -34,27 +34,27 @@ export default function commandHandler() {
   const command = argv._[0]
 
   switch(command) {
-    case 'compile':
-    case 'c':
-      const params = getParams()
-      const input = path.resolve('.', argv.input || argv.i)
-      const output = path.resolve('.', argv.output || argv.o)
-      const log = Boolean(argv.log || argv.l)
+  case 'compile':
+  case 'c':
+    const params = getParams()
+    const input = path.resolve('.', argv.input || argv.i)
+    const output = path.resolve('.', argv.output || argv.o)
+    const log = Boolean(argv.log || argv.l)
 
-      if (!fileExists(input)) {
-        console.log(chalk.red(`Input file path is not valid.`))
-        process.exit(-1)
-      }
+    if (!fileExists(input)) {
+      console.log(chalk.red(`Input file path is not valid.`))
+      process.exit(-1)
+    }
 
-      compile({
-        params,
-        input,
-        output,
-        log,
-      })
-      break
-    default:
-      help()
-      return
+    compile({
+      params,
+      input,
+      output,
+      log,
+    })
+    break
+  default:
+    help()
+    return
   }
 }

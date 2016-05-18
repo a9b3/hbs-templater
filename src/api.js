@@ -3,7 +3,6 @@ import chalk from 'chalk'
 import path from 'path'
 import fs from 'fs'
 import handlebars from 'handlebars'
-import { sync as rmrf } from 'rimraf'
 import { sync as mkdirp } from 'mkdirp'
 
 export function fileExists(file) {
@@ -36,15 +35,15 @@ function compileTemplate({
   log = false,
 } = {}) {
   const templateFile = fs.readFileSync(templateFilePath, 'utf8')
-  const compile = handlebars.compile(templateFile)
-  const rendered = compile(params)
+  const compileFn = handlebars.compile(templateFile)
+  const rendered = compileFn(params)
 
   if (fileExists(outputFilePath)) {
-    log && console.log(chalk.yellow(`File already exists ${outputFilePath}`))
+    if (log) console.log(chalk.yellow(`File already exists ${outputFilePath}`))
     return
   }
 
-  log && console.log(chalk.green(`Creating the file at ${outputFilePath}`))
+  if (log) console.log(chalk.green(`Creating the file at ${outputFilePath}`))
 
   mkdirp(path.dirname(outputFilePath))
   fs.writeFileSync(outputFilePath, rendered)
