@@ -40,6 +40,7 @@ export default function commandHandler() {
     const input = path.resolve('.', argv.input || argv.i)
     const output = path.resolve('.', argv.output || argv.o)
     const log = Boolean(argv.log || argv.l)
+    const overwrite = Boolean(argv.overwrite)
 
     if (!fileExists(input)) {
       console.log(chalk.red(`Input file path is not valid.`))
@@ -51,6 +52,7 @@ export default function commandHandler() {
       input,
       output,
       log,
+      overwrite,
     })
     break
   default:

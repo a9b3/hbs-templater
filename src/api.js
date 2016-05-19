@@ -33,12 +33,13 @@ function compileTemplate({
   outputFilePath,
   params,
   log = false,
+  overwrite = false,
 } = {}) {
   const templateFile = fs.readFileSync(templateFilePath, 'utf8')
   const compileFn = handlebars.compile(templateFile)
   const rendered = compileFn(params)
 
-  if (fileExists(outputFilePath)) {
+  if (!overwrite && fileExists(outputFilePath)) {
     if (log) console.log(chalk.yellow(`File already exists ${outputFilePath}`))
     return
   }
@@ -54,9 +55,13 @@ export function compile({
   input,
   output,
   log = false,
+  overwrite = false,
 } = {}) {
 
   recursiveDirectory(input, (filePath) => {
+    if (/^\./.test(path.basename(filePath))) {
+      return
+    }
     const pathDiff = filePath.replace(input + '/', '')
     const outputFilePath = path.resolve(output, pathDiff)
 
@@ -65,6 +70,7 @@ export function compile({
       outputFilePath,
       params,
       log,
+      overwrite,
     })
   })
 }
@@ -82,5 +88,7 @@ export function help() {
   console.log(`      ouput directory`)
   console.log(`    --[log | l]`)
   console.log(`      log info`)
+  console.log(`    --overwrite`)
+  console.log(`      overwrite existing file`)
   console.log(``)
 }
