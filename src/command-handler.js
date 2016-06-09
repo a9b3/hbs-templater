@@ -9,7 +9,7 @@ import {
 
 function getParams() {
   const argv = require('yargs').argv
-  const arg = argv.params || argv.p
+  const arg = argv.params || argv.p || "{}"
 
   if (/\.(js|json)$/.test(arg)) {
     const filePath = path.resolve('.', arg)

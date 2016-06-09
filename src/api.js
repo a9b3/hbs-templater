@@ -58,21 +58,31 @@ export function compile({
   overwrite = false,
 } = {}) {
 
-  recursiveDirectory(input, (filePath) => {
-    if (/^\./.test(path.basename(filePath))) {
-      return
-    }
-    const pathDiff = filePath.replace(input + '/', '')
-    const outputFilePath = path.resolve(output, pathDiff)
+  if (fs.lstatSync(input).isDirectory()) {
+    recursiveDirectory(input, (filePath) => {
+      if (/^\./.test(path.basename(filePath))) {
+        return
+      }
+      const pathDiff = filePath.replace(input + '/', '')
+      const outputFilePath = path.resolve(output, pathDiff)
 
+      compileTemplate({
+        templateFilePath: filePath,
+        outputFilePath,
+        params,
+        log,
+        overwrite,
+      })
+    })
+  } else {
     compileTemplate({
-      templateFilePath: filePath,
-      outputFilePath,
+      templateFilePath: input,
+      outputFilePath: output,
       params,
       log,
       overwrite,
     })
-  })
+  }
 }
 
 export function help() {
