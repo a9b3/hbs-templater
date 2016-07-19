@@ -2,9 +2,11 @@
   "name": "hbs-templater",
   "version": "0.2.0",
   "description": "Command line tool for compiling handlebars templates.",
-  "main": "index.js",
+  "main": "lib/api.js",
   "scripts": {
+    "version": "npm run prerelease && git add .",
     "postversion": "git push && git push --tags && npm publish",
+    "prerelease": "rm -rf lib && babel src --out-dir lib",
     "test": "./node_modules/eslint/bin/eslint.js ."
   },
   "homepage": "https://github.com/esayemm/hbs-templater",
