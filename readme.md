@@ -3,29 +3,32 @@
 
 Command line tool for compiling handlebars templates.
 
-CLI ex.
+## Install
 
 ```sh
-hbs-templater compile --params "{'foo': 'bar'}" --input ./foo --output ./bar
+npm i -g hbs-templater
 ```
 
-(Pending not implemented yet) Module ex.
+#### Command Line
+
+```sh
+hbs-templater compile \
+	--params "{'foo': 'bar'}" \
+	--input ./foo \
+	--output ./bar
+```
+
+#### Module
 
 ```javascript
 import path from 'path'
-import hbsTemplater from 'hbs-templater'
+import { compile } from 'hbs-templater'
 
-hbsTemplater.compile({
+compile({
 	params: {
 		foo: 'bar',
 	},
 	input: path.resolve('./foo'),
 	output: path.resolve('./bar'),
 })
-```
-
-## Install
-
-```sh
-npm i -g hbs-templater
 ```
